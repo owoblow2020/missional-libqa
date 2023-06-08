@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+  db:
+    image: postgres:14.0-alpine
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    depends_on:
+      - db
+    env_file: .env
+    ports:
+      - 127.0.0.1:10000:8000
+    command: "/bin/sh ./start.sh"
+    volumes:
+      - .:/code
+
+  ui:
+    image: node:14.18.1-alpine3.14
+    depends_on:
+      - app
+    env_file: .env
+    ports:
+      - 127.0.0.1:10001:3000
+    command: "/usr/local/bin/npm run start"
+    working_dir: "/code/ui"
+    volumes:
+      - .:/code
+
+volumes:
+  db_data:
+    driver: local

@@ -1,0 +1,13 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./variables.scss";
+
+body {
+  background-color: $brand-color-blue-dark;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $brand-color-light-grey;
+}
